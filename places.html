@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SORO | My Home Place</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/src/output.css">
+
+  <!-- fancybox -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.css" />
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-200">
+
+    <nav class="fixed top-0 left-0 w-full z-50 bg-white shadow-xs">
+        <div class=" mx-auto px-6 flex items-center justify-between h-16">
+
+            <div class="text-6xl font-extrabold text-gray-600 ms-20" id="nameBox">SORO</div>
+
+
+
+            <ul class="hidden md:flex space-x-8 text-gray-700 font-bold rounded-2xl ">
+                <li  class=" hover:text-gray-500 cursor-pointer hvr "><a href="/index.html">Home</a></li>
+                <li  class= "cursor-pointer hvr"><a href="/History.html">About</a>
+                </li>
+                <li  class=" hover:text-gray-500  cursor-pointer hvr "><a
+                        href="/govt.html">Governance</a></li>
+                <li  class=" hover:text-gray-500 cursor-pointer hvr "><a href="/culture.html">Heritage
+                        & Culture</a></li>
+                <li class=" text-gray-500 cursor-pointer hvr "><a href="/places.html">Places of
+                        Interest</a></li>
+
+                <li  class="hover:text-gray-500 cursor-pointer hvr "><a href="/news.html">News</a>
+                </li>
+            </ul>
+
+
+            <button id="menu-btn" class="md:hidden text-gray-800 focus:outline-none z-100">
+
+                <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+
+                <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 hidden" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+
+            </button>
+        </div>
+
+
+         <div id="mobile-menu"
+      class="fixed top-0 right-0 h-full w-2/3 bg-white shadow-lg transform translate-x-full transition-transform duration-300 md:hidden flex flex-col items-start p-8 space-y-6 text-lg font-semibold text-gray-700 z-50">
+      <a href="index.html">Home</a>
+      <a href="History.html">About</a>
+      <a href="govt.html">Governance</a>
+      <a href="culture.html">Heritage & Culture</a>
+      <a href="places.html">Places of Interest</a>
+      <a href="news.html">News</a>
+    </div>
+    </nav>
+
+
+  <section class="mt-20 w-9/10 mx-auto ">
+    <h1 class=" text-gray-500 text-3xl mb-5"> Nearby Tourist Destinations</h1>
+
+    <p class="text-[18px] rounded-2xl p-4 shadow-xl sca bg-gray-200  hover:text-gray-800 text-gray-600 ">
+      Soro's strategic location makes it a convenient base for exploring a variety of natural, religious, and historical
+      attractions in the northern Balasore region. Key tourist destinations accessible from Soro include:
+
+    </p>
+    <div class="lg:flex mt-5 p-5 items-center">
+      <h1 class="mt-5 text-xl basis-3/5"><span class="font-bold text-gray-950">Panchalingeswar Temple:</span> Situated
+        approximately 14 km from Soro, this is one of the most famous pilgrimage sites in the district. It is located on
+        a picturesque hillock and is dedicated to Lord Shiva, whose five lingams are submerged in a perennial stream.
+      </h1>
+      <img src="/assets/download (9).jpeg" alt="" class="basis-2/5 w-full" data-aos="zoom-out-left" data-aos-duration="1000">
+    </div>
+
+
+    <div class="lg:flex mt-5 p-5 items-center">
+      <img src="/assets/download (10).jpeg" alt="" class="basis-2/5 w-full h-60" data-aos="zoom-out-right" data-aos-duration="1000">
+      <h1 class="mt-5 text-xl basis-3/5 ms-5"><span class="font-bold text-gray-950">Kuldiha Wildlife Sanctuary:</span>
+        Located about 17 km away, this sanctuary, established in 1984, is a significant ecological zone. It is known for
+        its rich biodiversity, including elephants, leopards, and a variety of bird species, offering opportunities for
+        ecotourism and wildlife viewing.</h1>
+
+    </div>
+
+    <div class="lg:flex mt-5 p-5 items-center">
+      <h1 class="mt-5 text-xl basis-3/5"><span class="font-bold text-gray-950">Sindhua Dam:</span> At a distance of 18
+        km from Soro, this dam and its reservoir form a scenic spot popular for picnics and leisurely outings.</h1>
+      <img src="/assets/download (11).jpeg" alt="" class="basis-2/5 w-full h-80" data-aos="zoom-out-left" data-aos-duration="1000">
+    </div>
+
+    <div class="lg:flex mt-5 p-5 items-center">
+      <img src="/assets/download (12).jpeg" alt="" class="basis-2/5 w-full h-80" data-aos="zoom-out-right" data-aos-duration="1000">
+      <h1 class="mt-5 text-xl basis-3/5 ms-5"><span class="font-bold text-gray-950">Nilgiri Rajbati:</span>The former
+        royal palace in the nearby town of Nilgiri, about 21 km from Soro, offers a glimpse into the region's princely
+        history.</h1>
+
+    </div>
+    <div class="lg:flex mt-5 p-5 items-center">
+      <h1 class="mt-5 text-xl basis-3/5"><span class="font-bold text-gray-950">Coastal Attractions:</span> The broader
+        Balasore district is famous for its unique coastline. The renowned Chandipur Beach, known for its unusual
+        receding tides where the sea disappears for up to 5 kilometers, is a major tourist draw. Other beautiful beaches
+        in the district include Talasari, Dagara, and Kharasahapur, all of which are accessible from Soro.
+      </h1>
+      <img src="/assets/Chandipur-Beach-Set-for-Rs-11-Cr-Eco-Friendly-Makeover-to-Earn-Blue-Flag-Tag.jpg" alt=""
+        class="basis-2/5 w-full" data-aos="zoom-out-left" data-aos-duration="1000">
+    </div>
+
+    <div class="lg:flex mt-5 p-5 items-center">
+      <img src="/assets/download (13).jpeg" alt="" class="basis-2/5 w-full" data-aos="zoom-out-right" data-aos-duration="1000">
+      <h1 class="mt-5 text-xl basis-3/5 ms-5"><span class="font-bold text-gray-950">ISRO Balasore:</span> ISRO has
+        established the Balasore Rocket Launching Station (BRLS) and is establishing a new Atmosphere and Space Research
+        Facility (ASRF). Balasore is also closely associated with India's space program through its role as a key
+        location for testing advanced defense missile systems, often mentioned alongside ISRO's main launch center in
+        Sriharikota. </h1>
+
+    </div>
+  </section>
+
+
+    <section class="mt-10 w-9/10 mx-auto">
+      <h1 class=" text-gray-500 text-3xl mb-5"> Prominent Temples in and around Soro
+      </h1>
+
+        <p class="text-[18px]   ">Soro's strategic location makes it a convenient base for exploring a variety of natural, religious, and historical attractions in the northern Balasore region. Key tourist destinations accessible from Soro include:
+      </p>
+
+      <h1 class="mt-5 text-xl basis-3/5 ms-5"><span class="font-bold text-gray-950">Sri Jagannath Temple:</span>  Located on Anantpur Road, this temple is dedicated to Lord Jagannath, the preeminent deity of Odisha. </h1>
+      <h1 class="mt-5 text-xl basis-3/5 ms-5"><span class="font-bold text-gray-950">Khemeshwar Temple:</span>  A significant local temple dedicated to Lord Shiva. </h1>
+      
+      <h1 class="mt-5 text-xl basis-3/5 ms-5"><span class="font-bold text-gray-950">Baba Mangeswar Siba Mandira:</span> Baba Mangeswar Siba Mandira: Another important Shiva temple in the area. </h1>
+      <h1 class="mt-5 text-xl basis-3/5 ms-5"><span class="font-bold text-gray-950"> Mani Nageswari Shiva Temple:</span> A revered Shaivite shrine located in Singa Khunta. </h1>
+
+      <h1 class="mt-5 text-xl basis-3/5 ms-5"><span class="font-bold text-gray-950">Soro Bada Mandir:</span> A large and prominent temple in the Lingapada area of Soro. </h1>
+      <h1 class="mt-5 text-xl basis-3/5 ms-5"><span class="font-bold text-gray-950">Maa Sahada Suni Temple:</span>  A temple dedicated to a local goddess, located in Lingapada. </h1>
+    </section>
+
+
+   <!-- footer -->
+  <footer class="bg-gray-600 text-gray-900 px-6 py-12 mt-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+
+      <!-- About Section -->
+      <div class="animate-slide-left">
+        <h2 class="text-2xl font-extrabold mb-4 text-white"> OUR SORO </h2>
+        <p class="text-sm text-white/90">
+          Soro, a municipality and administrative block within the Balasore district of Odisha, represents a dynamic region at the confluence of a deep-rooted history, enduring agricultural traditions, and accelerating commercialization. Strategically positioned on National Highway 16, the vital artery connecting Kolkata and Chennai, Soro serves as a crucial midway point between the district headquarters of Balasore, approximately 35 km away, and the city of Bhadrak.1 Located 181 km from the state capital, Bhubaneswar, its placement ensures significant connectivity, which in turn fuels its role as an emerging economic hub for its surrounding rural hinterland
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="animate-slide-bottom">
+        <h2 class="text-2xl font-extrabold mb-4 text-white">Quick Links</h2>
+        <ul class="space-y-2 text-sm text-white/90">
+          <li><a href="index.html" class="hover:text-gray-900 hover:bg-white px-2 py-1 rounded transition">Home</a></li>
+          <li><a href="History.html" class="hover:text-gray-900 hover:bg-white px-2 py-1 rounded transition">About</a></li>
+          <li><a href="govt.html"
+              class="hover:text-gray-900 hover:bg-white px-2 py-1 rounded transition">Governance</a></li>
+          <li><a href="culture.html"
+              class="hover:text-gray-900 hover:bg-white px-2 py-1 rounded transition">Heritage & Culture</a></li>
+          <li><a href="places.html" class="hover:text-gray-900 hover:bg-white px-2 py-1 rounded transition">Places of Interest</a>
+          </li>
+          <li><a href="news.html" class="hover:text-gray-900 hover:bg-white px-2 py-1 rounded transition">News</a>
+          </li>
+          
+        </ul>
+      </div>
+
+      <!-- Contact Info & Map -->
+      <div class="animate-slide-left flex justify-center flex-col">
+        <h2 class="text-2xl font-extrabold mb-4 text-white ">Contact Info</h2>
+        <p class="text-sm text-white/90 mb-2">📍  Soro, Balasore, Odisha, India</p>
+       <h2 class="text-2xl font-extrabold mb-4 text-white ">Location</h2>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d74509.87398511311!2d86.65388022244662!3d21.28142504032138!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1c6e4937d9faed%3A0xa1b158619dda6cd4!2sSoro%2C%20Odisha!5e1!3m2!1sen!2sin!4v1757670020632!5m2!1sen!2sin"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+
+     
+
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class=" mt-10 border-t border-white/30 pt-4 text-center text-sm text-white/80 animate-slide-bottom">
+      <p>© 2025 SORO | My Home Place. All Rights Reserved</p>
+      <p class="mt-1 italic text-yellow-200">Created & Developed by <a href="https://sashi-portfolio.netlify.app/"
+          target="_blank"><span class="font-bold  text-black border-b-1 ">Sashi Sekhar
+            Sahoo</span></a></p>
+      
+    </div>
+  </footer>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+      integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- fancybox -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.umd.js"></script>
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="fancy.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

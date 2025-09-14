@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Population Chat — Tailwind UI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center p-6">
+  <div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+    <!-- Chat column -->
+    <div class="lg:col-span-2 bg-white rounded-2xl shadow p-6 flex flex-col">
+      <h1 class="text-2xl font-semibold mb-4">Population Chat</h1>
+
+      <div id="chatWindow" class="flex-1 overflow-y-auto space-y-4 p-4 bg-gray-50 rounded-lg border border-gray-100" style="min-height:320px">
+        <!-- chat messages appended here -->
+      </div>
+
+      <form id="chatForm" class="mt-4 flex gap-3">
+        <input id="messageInput" class="flex-1 rounded-full border border-gray-200 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Ask: e.g. 'What's the population of India' or 'Show me China'" />
+        <button class="bg-indigo-600 text-white rounded-full px-4 py-2 hover:bg-indigo-700">Send</button>
+      </form>
+
+      <div class="mt-4 text-sm text-gray-500">Tip: Try names: India, China, United States, Nigeria, Brazil, Indonesia</div>
+    </div>
+
+    <!-- Chart column -->
+    <div class="bg-white rounded-2xl shadow p-6 flex flex-col">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-medium">Population Chart</h2>
+        <select id="countrySelect" class="border rounded px-3 py-1">
+          <option value="India">India</option>
+          <option value="China">China</option>
+          <option value="United States">United States</option>
+          <option value="Nigeria">Nigeria</option>
+          <option value="Brazil">Brazil</option>
+          <option value="Indonesia">Indonesia</option>
+        </select>
+      </div>
+
+      <canvas id="popChart" style="width:100%;max-height:420px"></canvas>
+
+      <div id="chartMeta" class="mt-4 text-sm text-gray-600"></div>
+    </div>
+
+  </div>
+
+
+  <script>
+    // --- Sample population time-series data (millions) ---
+    const populationData = {
+      "India": { years: [2000,2005,2010,2015,2020,2025], values: [1050,1140,1230,1310,1380,1420], note: "Estimates in millions" },
+      "China": { years: [2000,2005,2010,2015,2020,2025], values: [1267,1303,1341,1371,1402,1412], note: "Estimates in millions" },
+      "United States": { years: [2000,2005,2010,2015,2020,2025], values: [282,295,309,321,331,337], note: "Thousands -> shown as millions" },
+      "Nigeria": { years: [2000,2005,2010,2015,2020,2025], values: [122,140,158,181,206,223], note: "Estimates in millions" },
+      "Brazil": { years: [2000,2005,2010,2015,2020,2025], values: [174,186,195,204,212,216], note: "Estimates in millions" },
+      "Indonesia": { years: [2000,2005,2010,2015,2020,2025], values: [214,221,237,255,273,277], note: "Estimates in millions" },
+    };
+
+    // Utility: append chat message
+    const chatWindow = document.getElementById('chatWindow');
+    function appendMessage(text, who='bot'){
+      const wrapper = document.createElement('div');
+      wrapper.className = who === 'user' ? 'flex justify-end' : 'flex justify-start';
+      wrapper.innerHTML = `
+        <div class="max-w-[80%] ${who==='user' ? 'bg-indigo-600 text-white' : 'bg-white text-gray-800'} p-3 rounded-xl shadow-sm border border-gray-100">
+          ${text}
+        </div>
+      `;
+      chatWindow.appendChild(wrapper);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+    // Create Chart.js chart
+    const ctx = document.getElementById('popChart');
+    let chart = new Chart(ctx, {
+      type: 'line',
+      data: { labels: populationData['India'].years, datasets: [{ label: 'Population (millions)', data: populationData['India'].values, tension: 0.3, fill: true }] },
+      options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: false } } }
+    });
+
+    function updateChartFor(country){
+      const d = populationData[country];
+      if(!d) return;
+      chart.data.labels = d.years;
+      chart.data.datasets[0].data = d.values;
+      chart.update();
+      document.getElementById('chartMeta').textContent = `${country} — ${d.note} — latest: ${d.values[d.values.length-1]} million (year ${d.years[d.years.length-1]})`;
+    }
+
+    // Hook up select -> chart
+    document.getElementById('countrySelect').addEventListener('change', (e)=>{
+      const country = e.target.value;
+      updateChartFor(country);
+    });
+
+    // Basic natural-language-ish parser to recognise country names from the input
+    function findCountryInText(text){
+      text = text.toLowerCase();
+      const candidates = Object.keys(populationData);
+      for(const c of candidates){
+        if(text.includes(c.toLowerCase())) return c;
+        // allow common abbreviations
+        if(c === 'United States' && (text.includes('us') || text.includes('usa') || text.includes('united states'))) return c;
+      }
+      return null;
+    }
+
+    // Handle form submit
+    document.getElementById('chatForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const input = document.getElementById('messageInput');
+      const text = input.value.trim();
+      if(!text) return;
+      appendMessage(escapeHtml(text), 'user');
+
+      // Simulate thinking
+      setTimeout(()=>{
+        const country = findCountryInText(text);
+        if(country){
+          // respond with a summary and update chart + select
+          const data = populationData[country];
+          const latest = data.values[data.values.length-1];
+          const year = data.years[data.years.length-1];
+          const reply = `Current (sample) estimate for ${country}: **${latest} million** (year ${year}). Showing time-series chart.`;
+          appendMessage(markdownToHtml(reply), 'bot');
+          document.getElementById('countrySelect').value = country;
+          updateChartFor(country);
+        } else {
+          appendMessage("Sorry — I don't have data for that country in this demo. Try: India, China, United States, Nigeria, Brazil, Indonesia.", 'bot');
+        }
+      }, 300);
+
+      input.value = '';
+    });
+
+    // small helpers
+    function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function markdownToHtml(s){
+      // very small converter for **bold**
+      return escapeHtml(s).replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g,'<br>');
+    }
+
+    // initialise meta
+    updateChartFor('India');
+
+  </script>
+
+</body>
+</html>
