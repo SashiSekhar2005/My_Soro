@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhubaneswar: The Confluence of Millennia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styling and Variables */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color-1: #e67e22;
+            --accent-color-2: #d35400;
+            --text-color: #ecf0f1;
+            --bg-color: #1c2833;
+            --card-bg-color: rgba(44, 62, 80, 0.8);
+            --gradient-1: linear-gradient(135deg, #f39c12, #d35400);
+            --gradient-2: linear-gradient(135deg, #8e44ad, #3498db);
+            --gradient-text: linear-gradient(90deg, #f1c40f, #e67e22);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        /* Header and Navigation */
+        .header {
+            background: var(--primary-color);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-bottom: 2px solid var(--accent-color-1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .navbar {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .navbar a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+
+        .navbar a:hover::after,
+        .navbar a.active::after {
+            width: 100%;
+        }
+
+        .navbar a.active {
+            color: #f1c40f;
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-color);
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Main Content Styling */
+        main {
+            padding: 2rem 5%;
+        }
+
+        .page-section {
+            display: none;
+            animation: fadeIn 0.8s ease-in-out;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+        
+        .page-section:last-child {
+            border-bottom: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: #f39c12;
+            border-left: 4px solid var(--accent-color-1);
+            padding-left: 1rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            color: #f1c40f;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: #bdc3c7;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            background: var(--gradient-2);
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            color: white; /* Override gradient for better visibility on this background */
+             background: none;
+            -webkit-background-clip: initial;
+            background-clip: initial;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--text-color);
+        }
+        
+        .content-card {
+            background: var(--card-bg-color);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--accent-color-2);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+        
+        thead {
+            background-color: var(--accent-color-2);
+        }
+        
+        thead th {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: var(--secondary-color);
+        }
+        
+        tbody tr:hover {
+            background-color: #4a6278;
+        }
+
+        /* Footer Styling */
+        .footer {
+            text-align: center;
+            padding: 2rem 5%;
+            background-color: var(--primary-color);
+            border-top: 2px solid var(--accent-color-1);
+            margin-top: 2rem;
+        }
+        
+        .footer p {
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .navbar {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                flex-direction: column;
+                padding: 1rem 5%;
+                border-top: 1px solid var(--accent-color-1);
+            }
+            
+            .navbar.active {
+                display: flex;
+            }
+
+            .navbar a {
+                padding: 1rem 0;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <a href="#home" class="logo">Bhubanes<span>war</span></a>
+        <nav class="navbar">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#history" class="nav-link">History</a>
+            <a href="#architecture" class="nav-link">Architecture</a>
+            <a href="#modernity" class="nav-link">Modern City</a>
+            <a href="#economy" class="nav-link">Economy</a>
+            <a href="#culture" class="nav-link">Culture</a>
+            <a href="#travel" class="nav-link">Travel Guide</a>
+        </nav>
+        <div class="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Part I: Home / Introduction -->
+        <section id="home" class="page-section active">
+            <div class="hero">
+                <h1>Bhubaneswar: The Confluence of Millennia</h1>
+                <p>A captivating fusion of timeless charm and contemporary vibrancy. Explore the city where ancient temples share the skyline with modern high-rises.</p>
+            </div>
+            
+            <div class="content-card">
+                <h2>The Soul of a City: An Introduction to Bhubaneswar</h2>
+                <p>Bhubaneswar, the capital of the Indian state of Odisha, presents a compelling narrative of harmonious duality. It is a city that is simultaneously ancient and modern, a place where millennia of history are not relegated to museums but are woven into the fabric of a vibrant, contemporary metropolis. Known reverentially as the "Temple City of India," its landscape is dotted with hundreds of magnificent stone sanctuaries that stand as testaments to a glorious past. Historically, the region was depicted as Ekamra Khetra, the "land adorned with a mango tree," and Chakra Khetra, names that root its identity in sacred Hindu lore. The city's very name is derived from "Tribhubaneswar," meaning the "Lord of the Three Worlds," a direct reference to Lord Shiva, its presiding deity.</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=Bhubaneswar+Skyline" alt="Bhubaneswar city skyline with temples and modern buildings">
+                <p>Yet, this ancient spiritual center is also one of modern India's first planned cities, conceived in the post-independence era to be a symbol of a forward-looking nation. Unlike many cities where the "old town" and "new city" exist as distinct, often conflicting, entities, Bhubaneswar has cultivated a seamless blend. Today, its significance extends far beyond its religious and historical importance. It has rapidly emerged as a pivotal center for the IT industry, higher education, and advanced healthcare in Eastern India. Its efficient civic infrastructure and abundance of green spaces have earned it a reputation as one of the country's cleanest and most livable cities, a status further cemented by its selection as a premier "Smart City".</p>
+                <p>This dual identity is not a mere accident of history but the result of a consciously curated narrative. When the German architect Otto Königsberger designed the new capital in 1946, his vision was explicitly to "reconcile the conflict between rationalism and symbolism between the new town and the temple town". This foundational principle of synthesis has been carried forward into the 21st century, demonstrating a sophisticated understanding by policymakers that the city's ancient past is not a relic to be preserved behind glass, but its most valuable asset and the bedrock of its future growth.</p>
+            </div>
+        </section>
+
+        <!-- Part II: History -->
+        <section id="history" class="page-section">
+            <div class="content-card">
+                <h2>The Echoes of History: From Kalinga's Glory to a Modern Capital</h2>
+                <p>The story of Bhubaneswar is a chronicle of empires, spiritual awakenings, and architectural zenith, with each historical epoch leaving an indelible and often visible mark on its landscape.</p>
+                
+                <h3>Ancient Foundations & The Kalinga War (c. 261 BCE)</h3>
+                <p>Long before it became a celebrated temple town, the region around Bhubaneswar was the heartland of the formidable Kalinga kingdom. On the plains flanking the Daya River, the Mauryan emperor Ashoka waged the brutal Kalinga War. The immense bloodshed led to his renunciation of warfare and his wholehearted embrace of Buddhism. As a physical testament to this transformation, Ashoka had his edicts carved into a large rock at Dhauli, a monument that still stands today.</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=Dhauli+Shanti+Stupa" alt="Dhauli Shanti Stupa, Bhubaneswar">
+
+                <h3>The Era of Great Builders (1st Century BCE - 14th Century CE)</h3>
+                <p>Under Emperor Kharavela, Kalinga reasserted its independence. A devout follower of Jainism, Kharavela patronized the creation of the magnificent rock-cut caves at Udayagiri and Khandagiri. From the 6th century onwards, dynasties like the Shailodbhavas, the Somavamsis, and the Eastern Gangas presided over a golden age of temple construction, transforming Bhubaneswar into a pre-eminent center of Hindu pilgrimage.</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=Udayagiri+Caves" alt="Udayagiri and Khandagiri Caves">
+                
+                <h3>Rebirth as a Modern Capital (1948)</h3>
+                <p>Following India's independence, a historic decision was made to shift the capital of Odisha from Cuttack. On April 13, 1948, Prime Minister Jawaharlal Nehru laid the foundation stone for a new capital at Bhubaneswar, selecting a site of immense historical and religious gravitas as the administrative heart of a modern, progressive state.</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=Modern+Bhubaneswar" alt="Modern planned city of Bhubaneswar">
+                
+                <h3>Table 1: A Chronological History of Bhubaneswar</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Era / Date</th>
+                            <th>Key Event & Significance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>c. 261 BCE</td>
+                            <td>The Kalinga War is fought. Emperor Ashoka converts to Buddhism, establishing the region's Buddhist heritage.</td>
+                        </tr>
+                        <tr>
+                            <td>2nd-1st Century BCE</td>
+                            <td>Reign of Emperor Kharavela. He commissions the rock-cut caves at Udayagiri and Khandagiri.</td>
+                        </tr>
+                        <tr>
+                            <td>6th-13th Century CE</td>
+                            <td>The golden age of temple construction. Most of Bhubaneswar's iconic Hindu temples are built.</td>
+                        </tr>
+                        <tr>
+                            <td>16th-18th Century CE</td>
+                            <td>Period of decline marked by invasions. Many temples are damaged.</td>
+                        </tr>
+                        <tr>
+                            <td>1803 CE</td>
+                            <td>The British East India Company gains control of the region.</td>
+                        </tr>
+                        <tr>
+                            <td>April 13, 1948</td>
+                            <td>Bhubaneswar is formally established as the new capital of Odisha.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Part III: Architecture -->
+        <section id="architecture" class="page-section">
+            <div class="content-card">
+                <h2>A Symphony in Stone: The Architectural Heritage</h2>
+                <p>Bhubaneswar's architectural legacy is one of the most significant in India, representing the zenith of the Kalinga School of Architecture. It is characterized by its own distinct typologies, structural components, and decorative motifs.</p>
+                
+                <h3>The Grand Sanctuaries: Profiling the Temple Icons</h3>
+
+                <h4>Lingaraj Temple: The Quintessence of Kalinga Art</h4>
+                <p>The Lingaraj Temple is Bhubaneswar's most iconic landmark. Its main tower (vimana) soars to a height of 55 meters (180 feet), dominating the city's skyline. A fascinating aspect is its role as a Harihara shrine, symbolizing the convergence of Shaivism and Vaishnavism.</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=Lingaraj+Temple" alt="Lingaraj Temple, Bhubaneswar">
+                
+                <h4>Mukteswara Temple: The Gem of Odia Architecture</h4>
+                <p>Often hailed as the "Gem of Odia Architecture," the 10th-century Mukteswara Temple is a small but exquisitely detailed masterpiece. Its most celebrated feature is the magnificent and unique free-standing arched gateway, or torana.</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=Mukteswara+Gateway" alt="Mukteswara Temple Torana gateway">
+                
+                <h4>Rajarani Temple: The "Love Temple" in Sandstone</h4>
+                <p>The 11th-century Rajarani Temple is known for its unique sculptural elegance. It is locally referred to as the "Love Temple" due to the profusion of graceful and sensuous carvings of celestial maidens that adorn its exterior walls.</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=Rajarani+Temple" alt="Rajarani Temple, Bhubaneswar">
+                
+                <h4>The Ascetic's Abode: Udayagiri and Khandagiri Caves</h4>
+                <p>Dating back to the 2nd century BCE, the twin hills of Udayagiri and Khandagiri house a complex of rock-cut caves that are among the earliest examples of Jain architecture in India, serving as residential quarters for Jain monks.</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=Khandagiri+Caves" alt="Udayagiri and Khandagiri Caves">
+
+                <h3>Table 2: Key Temples of Bhubaneswar - An Architectural Overview</h3>
+                 <table>
+                    <thead>
+                        <tr>
+                            <th>Temple Name</th>
+                            <th>Presiding Deity</th>
+                            <th>Approx. Period / Dynasty</th>
+                            <th>Key Architectural Features</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Lingaraj Temple</td>
+                            <td>Shiva (as Harihara)</td>
+                            <td>11th Century / Somavamsi & Ganga</td>
+                            <td>Represents the zenith of Kalinga architecture; features a fully developed four-part structure; towering 55m Rekha Deula.</td>
+                        </tr>
+                        <tr>
+                            <td>Mukteswara Temple</td>
+                            <td>Shiva</td>
+                            <td>10th Century / Somavamsi</td>
+                            <td>Hailed as the "Gem of Odisha Architecture"; features a unique, ornate free-standing torana (gateway).</td>
+                        </tr>
+                        <tr>
+                            <td>Rajarani Temple</td>
+                            <td>No presiding deity</td>
+                            <td>11th Century / Somavamsi</td>
+                            <td>Constructed from red and yellow sandstone; known for exquisite carvings; distinctive spire with clusters of miniature towers.</td>
+                        </tr>
+                        <tr>
+                            <td>Ananta Vasudeva Temple</td>
+                            <td>Vishnu</td>
+                            <td>13th Century / Eastern Ganga</td>
+                            <td>A prominent Vaishnavite shrine in a predominantly Shaivite city; houses complete idols of Krishna, Balarama, and Subhadra.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <!-- Part IV: Modern Metropolis -->
+        <section id="modernity" class="page-section">
+             <div class="content-card">
+                <h2>The Modern Metropolis: Planning, Growth, and Governance</h2>
+                
+                <h3>Königsberger's Vision: The Birth of a Planned City</h3>
+                <p>In 1946, the master plan for modern Bhubaneswar was designed by the German architect Otto Königsberger. He adopted the "NEIGHBORHOOD UNIT PLANNING" concept, envisioning the city as a series of self-contained residential units with a gridiron pattern, wide streets, and ample green belts.</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=City+Planning" alt="Bhubaneswar city plan layout">
+                
+                <h3>Urban Expansion and The Smart City Mandate</h3>
+                <p>The city's growth far exceeded the initial projections. While this signifies success, it has also brought challenges like pressure on infrastructure. In 2016, Bhubaneswar was selected as one of the first "Smart Cities" in India. This initiative aims to leverage technology and innovation to improve the quality of life for its residents through sustainable urban development and enhanced digital connectivity.</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=Smart+City" alt="Bhubaneswar Smart City Initiative">
+                
+                <h3>Civic Framework: Governance and Development</h3>
+                <p>The administration and development of the city are managed by two primary civic bodies: the Bhubaneswar Municipal Corporation (BMC), responsible for essential public services, and the Bhubaneswar Development Authority (BDA), which oversees planning and major infrastructure projects.</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=BMC+Building" alt="Bhubaneswar Municipal Corporation Building">
+             </div>
+        </section>
+
+        <!-- Part V: Economy -->
+        <section id="economy" class="page-section">
+            <div class="content-card">
+                <h2>The Economic Powerhouse of Eastern India</h2>
+                <p>In recent decades, Bhubaneswar has transformed into a dynamic economic engine, establishing itself as a leading commercial, educational, and technological hub in Eastern India.</p>
+
+                <h3>The IT and FinTech Revolution</h3>
+                <p>The city was an early adopter of the IT revolution and has attracted giants like Infosys, TCS, Wipro, and Deloitte. It is also being developed as India's first Integrated Global Financial Technology Capability Hub (I-GFTCH), in collaboration with Singapore-based institutions.</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=IT+Hub" alt="IT Park in Bhubaneswar">
+
+                <h3>The Education and Research Corridor</h3>
+                <p>Bhubaneswar's rise is underpinned by its status as a premier education hub, home to elite national institutes like IIT Bhubaneswar, AIIMS, NISER, and XIMB, which act as a critical pipeline for high-skilled talent.</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=IIT+Bhubaneswar" alt="IIT Bhubaneswar Campus">
+
+                <h3>Vision for the Future: Megaprojects and Expansion</h3>
+                <p>Ambitious projects are underway to fuel future growth, including the development of a 'New City' on an 800-acre site, envisioned as a multi-economic growth zone, and a major riverfront development project to enhance livability and tourism.</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=New+City+Project" alt="New City Development Project">
+            </div>
+        </section>
+
+        <!-- Part VI: Culture -->
+        <section id="culture" class="page-section">
+             <div class="content-card">
+                <h2>The Cultural Tapestry: Arts, Festivals, and Flavors</h2>
+                <p>The vibrant culture of Bhubaneswar is a living heritage, expressed through its exquisite traditional crafts, colorful festivals, and a distinctive culinary tradition.</p>
+
+                <h3>The Artisan's Touch: Traditional Crafts</h3>
+                <p>The region is renowned for Pattachitra (traditional cloth-based scroll painting) and Tarakasi (the exquisite art of silver filigree). These ancient crafts support entire communities of artisans and are integral to the tourism economy.</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=Pattachitra+Art" alt="An Odia Pattachitra painting">
+
+                <h3>Rhythms of Celebration: Major Festivals</h3>
+                <p>Bhubaneswar's cultural calendar is marked by vibrant festivals like Rath Yatra, Raja Parba (celebrating womanhood and the earth's fertility), and the Kalinga Dhauli Mahotsav, a celebration of peace through music and dance.</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=Rath+Yatra" alt="Rath Yatra Festival">
+
+                <h3>The Taste of Odisha: A Culinary Journey</h3>
+                <p>The cuisine of Odisha is known for its subtle flavors. Key dishes include Dalma (lentils and vegetables), Pakhala Bhata (fermented rice), and the iconic sweet Chhena Podo (a baked dessert of caramelized cottage cheese).</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=Odia+Cuisine" alt="Traditional Odia Thali">
+             </div>
+        </section>
+
+        <!-- Part VII: Travel Guide -->
+        <section id="travel" class="page-section">
+            <div class="content-card">
+                <h2>A Traveler's Compendium: Exploring the City and Beyond</h2>
+                <p>Bhubaneswar is not only a destination in itself but also the primary gateway to the rich cultural and natural heritage of Odisha.</p>
+
+                <h3>Museums: Curators of Heritage</h3>
+                <p>The Odisha State Museum houses a vast collection, including approximately 40,000 rare palm-leaf manuscripts. The Museum of Tribal Arts & Artefacts offers a fascinating window into the diverse indigenous cultures of the state's 62 distinct tribal communities.</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=State+Museum" alt="Odisha State Museum">
+
+                <h3>Green Lungs and Wildlife Sanctuaries</h3>
+                <p>Nandankanan Zoological Park is a premier attraction, internationally recognized for its successful conservation breeding programs, including being the first zoo in the world to breed white tigers in captivity.</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=Nandankanan+Zoo" alt="Nandankanan Zoological Park">
+                
+                <h3>Table 3: Nandankanan Zoological Park Visitor Information</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item/Facility</th>
+                            <th>Details / Cost (INR)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Visiting Hours (April - September)</td>
+                            <td>07:30 hrs. to 17:30 hrs.</td>
+                        </tr>
+                        <tr>
+                            <td>Visiting Hours (October - March)</td>
+                            <td>08:00 hrs. to 17:00 hrs.</td>
+                        </tr>
+                        <tr>
+                            <td>Entry Fee (Adult > 12 years)</td>
+                            <td>₹50</td>
+                        </tr>
+                        <tr>
+                            <td>Entry Fee (Child 3-12 years)</td>
+                            <td>₹10</td>
+                        </tr>
+                        <tr>
+                            <td>Safari (Non-AC)</td>
+                            <td>₹65 (for all safaris)</td>
+                        </tr>
+                        <tr>
+                            <td>Safari (AC)</td>
+                            <td>₹100 (for all safaris)</td>
+                        </tr>
+                        <tr>
+                            <td>Toy Train</td>
+                            <td>₹50 (Adult), ₹30 (Child)</td>
+                        </tr>
+                        <tr>
+                            <td>Ropeway</td>
+                            <td>₹120 per person</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Gateway to the "Swarna Tribhuja" (Golden Triangle)</h3>
+                <p>Bhubaneswar is the essential starting point for exploring the Golden Triangle tourist circuit, which includes the sacred Jagannath Temple in Puri and the magnificent 13th-century Sun Temple at Konark, a UNESCO World Heritage Site.</p>
+                <img src="https://placehold.co/800x400/34495e/ecf0f1?text=Konark+Sun+Temple" alt="Konark Sun Temple chariot wheel">
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Bhubaneswar: The Confluence of Millennia. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pageSections = document.querySelectorAll('.page-section');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navbar = document.querySelector('.navbar');
+
+            // Function to handle navigation
+            const navigateTo = (hash) => {
+                // Deactivate all sections and links
+                pageSections.forEach(section => section.classList.remove('active'));
+                navLinks.forEach(link => link.classList.remove('active'));
+
+                // Activate the target section and link
+                const targetSection = document.querySelector(hash);
+                const activeLink = document.querySelector(`a[href="${hash}"]`);
+
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+
+                // Close mobile menu after navigation
+                if (navbar.classList.contains('active')) {
+                    navbar.classList.remove('active');
+                }
+                
+                // Scroll to top of the page for better user experience
+                window.scrollTo(0, 0);
+            };
+
+            // Event listener for nav links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const hash = this.getAttribute('href');
+                    navigateTo(hash);
+                });
+            });
+            
+            // Event listener for logo click
+            document.querySelector('.logo').addEventListener('click', (e) => {
+                 e.preventDefault();
+                 navigateTo('#home');
+            });
+
+
+            // Mobile menu toggle
+            menuToggle.addEventListener('click', function() {
+                navbar.classList.toggle('active');
+            });
+
+            // Initial page load
+            const initialHash = window.location.hash || '#home';
+            navigateTo(initialHash);
+        });
+    </script>
+
+</body>
+</html>
+

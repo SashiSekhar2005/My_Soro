@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kataka: A Portrait of Odisha's Millennium City</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Body and Resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header and Navigation */
+        .header {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #8B5CF6; /* A vibrant purple */
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .nav-link:hover {
+            color: #8B5CF6;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        .hamburger svg {
+             width: 24px;
+             height: 24px;
+        }
+
+
+        /* Main Content Styling */
+        main {
+            padding-top: 2rem;
+        }
+
+        .content-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-card h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #4a5568;
+            border-bottom: 3px solid #8B5CF6;
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #718096;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .content-card p {
+            margin-bottom: 1rem;
+            color: #4a5568;
+        }
+
+        .content-card ul {
+            list-style-position: inside;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+        .content-card ul li {
+            margin-bottom: 0.5rem;
+        }
+
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://placehold.co/1200x600/8B5CF6/ffffff?text=Kataka');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .hero-section p {
+            font-size: 1.25rem;
+        }
+
+        /* Table Styling */
+        .table-container {
+            overflow-x: auto;
+        }
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+
+        .styled-table th, .styled-table td {
+            border: 1px solid #e2e8f0;
+            padding: 0.75rem 1rem;
+            text-align: left;
+        }
+
+        .styled-table th {
+            background-color: #f7fafc;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        /* Grid Layout */
+        .grid-container {
+            display: grid;
+            gap: 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #2d3748;
+            color: white;
+            margin-top: 3rem;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+             .hero-section {
+                padding: 6rem 1rem;
+            }
+            .hero-section h1 {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background-color: white;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links a {
+                padding: 1rem;
+                text-align: center;
+                border-bottom: 1px solid #f0f2f5;
+            }
+            .hamburger {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header and Navigation -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo" onclick="navigateTo('home')">Kataka</a>
+                <div class="hamburger" id="hamburger-menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4" />
+                    </svg>
+                </div>
+                <div class="nav-links" id="nav-links">
+                    <a href="#home" class="nav-link active" onclick="navigateTo('home')">Home</a>
+                    <a href="#history" class="nav-link" onclick="navigateTo('history')">History</a>
+                    <a href="#geography" class="nav-link" onclick="navigateTo('geography')">Geography</a>
+                    <a href="#economy" class="nav-link" onclick="navigateTo('economy')">Economy</a>
+                    <a href="#culture" class="nav-link" onclick="navigateTo('culture')">Culture & Food</a>
+                    <a href="#landmarks" class="nav-link" onclick="navigateTo('landmarks')">Landmarks</a>
+                    <a href="#modern" class="nav-link" onclick="navigateTo('modern')">Modern Cuttack</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="content" class="container">
+        <!-- Content will be injected here by JavaScript -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Kataka: A Portrait of Odisha's Millennium City. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- CONTENT FOR EACH PAGE ---
+        const pageContent = {
+            home: `
+                <div class="hero-section">
+                    <h1>Kataka: The Millennium City</h1>
+                    <p>Discover the soul of Odisha's ancient capital, a city of enduring history and vibrant culture.</p>
+                </div>
+                <div class="content-card">
+                    <h2>The Soul of a City</h2>
+                    <p>Nestled at the apex of the Mahanadi river delta, the city of Cuttack stands as a profound testament to the endurance of history and the dynamism of culture in Eastern India. For nearly a millennium, it served as the political nucleus of Odisha, a fortified capital from which dynasties governed empires. Though the seat of government has since moved, Cuttack has not faded into the annals of history; instead, it has evolved, embracing a multifaceted identity that continues to define the economic and cultural landscape of the state. Its story is etched in its very name, its numerous appellations, and its intricate relationship with the modern capital, Bhubaneswar.</p>
+                    <h3>The Meaning of 'Kataka'</h3>
+                    <p>The name 'Cuttack' is an anglicized derivation of the Sanskrit word Kataka, a term laden with historical significance that encapsulates the city's foundational purpose. Kataka carries a dual meaning: it signifies a "military camp" or cantonment, and also a "seat of government protected by the army". This etymology is not a mere linguistic curiosity but a direct reflection of the city's origin as a strategic, fortified settlement built around the ancient Barabati Fort.</p>
+                    <h3>A City of Many Titles</h3>
+                    <ul>
+                        <li><strong>The Millennium City:</strong> This honorific celebrates a history stretching back over a thousand years.</li>
+                        <li><strong>The Silver City:</strong> Cuttack is globally renowned for its exquisite silver filigree work, a craft known locally as Chandi Tarakasi.</li>
+                        <li><strong>The Business and Commercial Capital of Odisha:</strong> Even after the administrative capital was relocated, Cuttack has steadfastly maintained its position as the state's economic powerhouse.</li>
+                        <li><strong>The Judicial Capital of Odisha:</strong> The establishment of the Orissa High Court within its limits cements Cuttack's continuing administrative and legal importance.</li>
+                    </ul>
+                     <h3>The 'Twin City' Dynamic</h3>
+                    <p>In the contemporary context, Cuttack shares a unique and symbiotic relationship with Bhubaneswar, the state's modern capital, located just 20 km away. The two are often referred to as the "Twin Cities of Odisha". This dynamic is central to understanding modern Odisha: Cuttack represents the ancient, organic, and commercially dense heart, while Bhubaneswar is the planned, spacious, and administrative nerve center.</p>
+                </div>
+            `,
+            history: `
+                <div class="content-card">
+                    <h2>A Tapestry of Dynasties</h2>
+                    <p>Cuttack's history is the history of Odisha itself, a grand narrative of power, conquest, and cultural efflorescence. For over 900 years, the city served as the sovereign capital, a stage upon which the region's destiny was shaped by a succession of powerful dynasties.</p>
+                    <h3>The Contested Founding</h3>
+                    <p>The precise origins of Cuttack are a subject of historical debate. Traditional chronicles (Madalapanji) attribute its founding to King Nrupa Kesari in 989 A.D. However, more recent scholarship, grounded in epigraphic evidence, points to a later founding by the Eastern Ganga dynasty's King Anangabhimadeva III between 1211 and 1230 A.D., who named it Abhinab-Baranasi-Katak.</p>
+                    <h3>The Seat of Empires</h3>
+                    <ul>
+                        <li><strong>Gajapati Kings (1435-1541 A.D.):</strong> Under rulers like Kapilendra Deva, the Odishan empire expanded dramatically with Cuttack as its imperial heart.</li>
+                        <li><strong>Afghan and Mughal Rule:</strong> The Ain-i-Akbari confirms Cuttack was a flourishing capital and served as the official residence of the Mughal Governor.</li>
+                        <li><strong>The Maratha Period (c. 1750 onwards):</strong> The city experienced a significant commercial boom, prospering as a vital "emporium of trade and commerce".</li>
+                        <li><strong>British Occupation and Modernization:</strong> In 1803, Cuttack was occupied by the British. It became the capital of the Orissa Division in 1816 and, in 1936, the capital of the newly formed province of Odisha.</li>
+                    </ul>
+                    <h3>The Freedom Struggle and Capital Transfer</h3>
+                    <p>During India's struggle for independence, Cuttack was a vibrant nerve center for nationalist activities and is the birthplace of Netaji Subhas Chandra Bose. In 1948, the capital was shifted to Bhubaneswar, marking a profound redefinition of the city's purpose, allowing it to fully embrace its commercial, cultural, and judicial strengths.</p>
+                </div>
+            `,
+            geography: `
+                <div class="content-card">
+                    <h2>The Land Between Rivers</h2>
+                    <p>The identity and history of Cuttack are inextricably linked to its unique geography. Positioned on a landscape sculpted by one of India's great river systems, the city's very existence is a testament to both the opportunities and the challenges presented by its riverine environment.</p>
+                    <h3>A Deltaic City</h3>
+                    <p>Cuttack is strategically located at the head of the vast Mahanadi river delta. The core of the old city occupies a narrow strip of land, an alluvial peninsula flanked by the main channel of the Mahanadi River to its north and its largest distributary, the Kathajodi River, to its south. This configuration gave the city a natural defense, embodying the meaning of Kataka—a fortified military camp.</p>
+                    <h3>Climate and Seasons</h3>
+                    <ul>
+                       <li><strong>Summer (March to June):</strong> Characterized by high heat and humidity, with temperatures often rising above 40°C.</li>
+                       <li><strong>Monsoon (July to October):</strong> The South-West monsoon brings heavy rainfall, crucial for agriculture but also posing a risk of flooding. The average annual precipitation is approximately 1,892.55 mm.</li>
+                       <li><strong>Winter (November to February):</strong> The most pleasant time of year, with cool and dry weather and temperatures dropping as low as 10°C.</li>
+                    </ul>
+                    <p>The rivers that define Cuttack's geography represent a central paradox: they are the source of its agricultural prosperity and its historical defense, yet they have always posed an existential threat through devastating floods, shaping the city's physical and cultural landscape profoundly.</p>
+                </div>
+            `,
+            economy: `
+                <div class="content-card">
+                    <h2>The Economic Engine</h2>
+                    <p>As the designated business capital of Odisha, Cuttack functions as the state's primary economic engine, demonstrating a diversified and resilient financial foundation that has evolved significantly from its purely agrarian roots.</p>
+                    <h3>Agricultural Foundation</h3>
+                    <p>Despite its urban character, an estimated 76% of the district's population depends on agriculture. The fertile alluvial soil of the Mahanadi delta is ideal for cultivating key crops like rice, pulses, oilseeds, jute, and sugarcane. Cuttack is one of the state's largest producers of rice and second for jute.</p>
+                    <h3>Commercial and Industrial Hub</h3>
+                    <p>The Trade and Transportation sector is the largest employer in the city. Its proximity to the major port of Paradip (85 km away) provides a crucial gateway for maritime trade. The industrial base is diverse, including ferrous alloys, steel, food products, and textiles, complemented by a thriving small-scale sector.</p>
+                    <h3>The Art of Tarakasi: Silver Filigree</h3>
+                    <p>At the heart of Cuttack's artisanal economy is its most celebrated craft: Chandi Tarakasi, or silver filigree, which has earned it the title of the "Silver City." This highly sophisticated art form has a history of over 500 years. The intricate process involves melting pure silver, drawing it into fine wires, and then twisting and bending them into gossamer-like patterns. Tarakasi is used for everything from jewelry and traditional marital items to the spectacular Chandi Medhas—massive silver backdrops for the idols during the Durga Puja festival. It functions as a complete cultural-economic ecosystem, deeply integrated into the city's faith, traditions, and global identity.</p>
+                </div>
+            `,
+            culture: `
+                <div class="content-card">
+                    <h2>The Cultural Heartbeat & Culinary Expedition</h2>
+                    <p>Cuttack's soul is most vividly expressed through its grand festivals and its renowned culinary landscape, celebrated across Odisha for its iconic street food and delectable traditional sweets.</p>
+                    <h3>Durga Puja: The Grandeur of the Silver City</h3>
+                    <p>While celebrated across Eastern India, Durga Puja in Cuttack is distinguished by its opulence, particularly the 'Chaandi Medha' (silver tableau) tradition. Many pandals feature backdrops and crowns for the deity crafted from pure silver using the local Tarakasi technique, transforming the festival into a city-wide exhibition of its most famous craft.</p>
+                    <h3>Bali Jatra: Commemorating a Maritime Legacy</h3>
+                    <p>Arguably Cuttack's most famous festival, Bali Jatra ("Voyage to Bali") commemorates Odisha's ancient maritime history. It is considered one of Asia's largest open-air trade fairs, held on the banks of the Mahanadi. The festival begins with the ritual of Boita Bandana, where people float miniature boats as a tribute to ancient mariners, and evolves into a massive cultural and commercial extravaganza.</p>
+                    <h3>The Flavours of Cuttack</h3>
+                    <p>Cuttack is a paradise for food lovers. The streets are where its culinary heart beats loudest, offering iconic dishes:</p>
+                    <div class="table-container">
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Dish Name</th>
+                                    <th>Brief Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Iconic Street Food</td>
+                                    <td>Dahibara Aloodum</td>
+                                    <td>Soft lentil fritters in spiced yogurt, served with a fiery potato curry.</td>
+                                </tr>
+                                <tr>
+                                    <td>Signature Sweets</td>
+                                    <td>Chhena Poda</td>
+                                    <td>A unique baked cottage cheese cake with a caramelized crust.</td>
+                                </tr>
+                                 <tr>
+                                    <td>Traditional Meals</td>
+                                    <td>Pakhala Bhata</td>
+                                    <td>Fermented rice soaked in water, a cooling summer staple.</td>
+                                </tr>
+                                <tr>
+                                    <td>Traditional Meals</td>
+                                    <td>Machha Besara</td>
+                                    <td>Fish cooked in a pungent and flavorful mustard seed paste gravy.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `,
+            landmarks: `
+                <div class="content-card">
+                    <h2>Landmarks of a Legacy</h2>
+                    <p>Cuttack's thousand-year history is etched into its landscape. A tour reveals a rich collection of landmarks that narrate the story of its long and illustrious past.</p>
+                    <div class="grid-container">
+                        <div>
+                            <h3>Barabati Fort</h3>
+                            <p>The historical and spiritual heart of Cuttack, constructed in the 14th century. Its ruins, including the grand gateway and moat, recall the city's origins as a fortified capital.</p>
+                        </div>
+                        <div>
+                            <h3>Cuttack Chandi Temple</h3>
+                            <p>Dedicated to the city's presiding deity, Goddess Chandi, this is one of Cuttack's most important religious sites, drawing vast crowds of pilgrims.</p>
+                        </div>
+                        <div>
+                            <h3>Odisha Maritime Museum</h3>
+                            <p>Situated in the historic Jobra workshop, this museum showcases the state's rich seafaring legacy, celebrated annually during the Bali Jatra festival.</p>
+                        </div>
+                        <div>
+                            <h3>Netaji Birth Place Museum</h3>
+                            <p>The ancestral home of Netaji Subhas Chandra Bose has been converted into a museum displaying his personal belongings, photos, and documents.</p>
+                        </div>
+                        <div>
+                            <h3>Stone Revetment</h3>
+                            <p>An extraordinary feat of 11th-century engineering on the Kathjuri River bank, built to protect the city from floods and symbolizing its resilience.</p>
+                        </div>
+                        <div>
+                            <h3>Barabati Stadium</h3>
+                            <p>A modern icon of Cuttack, this international cricket venue offers a vibrant counterpoint to the silent whispers of history from the adjacent fort.</p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            modern: `
+                <div class="content-card">
+                    <h2>Pillars of Modernity</h2>
+                    <p>While deeply rooted in its historical legacy, contemporary Cuttack is a thriving urban center supported by robust administrative, educational, and healthcare infrastructure. It functions as a crucial regional hub for the entire state of Odisha.</p>
+                    <h3>Educational Hub</h3>
+                    <p>Cuttack has long been a preeminent center for education, home to some of the state's oldest and most prestigious institutions, including Ravenshaw University (est. 1868), National Law University Odisha (NLUO), and the National Rice Research Institute (CRRI).</p>
+                    <h3>Healthcare Epicenter</h3>
+                    <p>Cuttack's most critical role in modern Odisha is as its primary healthcare epicenter. The Srirama Chandra Bhanja (S.C.B.) Medical College and Hospital (est. 1944) is one of India's oldest and largest medical institutions, serving as the premier tertiary care hospital for the state.</p>
+                    <h3>The Hub of Connectivity</h3>
+                    <p>The city is a central node in Odisha's transportation network. National Highway 16 passes through, and Cuttack Junction is one of the busiest railway hubs in the state, connecting to all major metropolitan areas of India. The Biju Patnaik International Airport in nearby Bhubaneswar provides air connectivity.</p>
+                    <h3>Synthesis and Outlook</h3>
+                    <p>Cuttack is a city that defies simple categorization. The decision to shift the political capital in 1948 proved to be a moment of profound redefinition, allowing the city to forge a new, stronger identity as the undisputed commercial, judicial, cultural, and healthcare nucleus of the state. Its ability to blend its historical legacy with a forward-looking dynamism is its greatest asset. As it moves into its second millennium, Cuttack continues to shape the destiny of its region, standing as a proud and enduring testament to its title as the Millennium City.</p>
+                </div>
+            `
+        };
+
+        // --- NAVIGATION LOGIC ---
+        const contentArea = document.getElementById('content');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        const navLinksContainer = document.getElementById('nav-links');
+
+        function navigateTo(page) {
+            // Load content
+            contentArea.innerHTML = pageContent[page];
+            
+            // Update active link
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${page}`) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Close hamburger menu on navigation
+            if (navLinksContainer.classList.contains('active')) {
+                navLinksContainer.classList.remove('active');
+            }
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Hamburger menu toggle
+        hamburgerMenu.addEventListener('click', () => {
+            navLinksContainer.classList.toggle('active');
+        });
+
+        // Initial page load
+        document.addEventListener('DOMContentLoaded', () => {
+            navigateTo('home');
+        });
+    </script>
+</body>
+</html>

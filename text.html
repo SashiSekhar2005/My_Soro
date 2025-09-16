@@ -1,47 +1,366 @@
-<footer style="background:#f7f9f6;border-top:2px solid #ddd;padding:30px;font-family:Arial, sans-serif;color:#333;">
-  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;max-width:1000px;margin:auto;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Bhubaneswar – The Temple City of India</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles to enhance Tailwind */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-    <!-- Our Village -->
-    <div style="flex:1;min-width:200px;margin:10px;">
-      <h3 style="margin-bottom:10px;color:#2c662d;">Our Village</h3>
-      <p style="margin:0;line-height:1.6;">
-        Discover the culture, history, and beauty of our village. Stay connected with our traditions and community spirit. 🌿
-      </p>
-    </div>
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
 
-    <!-- Quick Links -->
-    <div style="flex:1;min-width:200px;margin:10px;">
-      <h3 style="margin-bottom:10px;color:#2c662d;">Quick Links</h3>
-      <ul style="list-style:none;padding:0;line-height:1.8;margin:0;">
-        <li><a href="/home" style="color:#1a73e8;text-decoration:none;">Home</a></li>
-        <li><a href="/about" style="color:#1a73e8;text-decoration:none;">About Us</a></li>
-        <li><a href="/gallery" style="color:#1a73e8;text-decoration:none;">Gallery</a></li>
-        <li><a href="/contact" style="color:#1a73e8;text-decoration:none;">Contact</a></li>
-      </ul>
-    </div>
+        .hero-banner {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1590218512529-f3dde16f1b13?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
 
-    <!-- Contact Info -->
-    <div style="flex:1;min-width:200px;margin:10px;">
-      <h3 style="margin-bottom:10px;color:#2c662d;">Contact Info</h3>
-      <p style="margin:0;line-height:1.6;">
-        📞 +91-XXXXXXXXXX <br>
-        📧 example@email.com
-      </p>
-    </div>
+        /* Active navigation link style */
+        .nav-link.active {
+            color: #fb923c; /* orange-400 */
+            border-bottom: 2px solid #fb923c;
+        }
 
-    <!-- Location -->
-    <div style="flex:1;min-width:200px;margin:10px;">
-      <h3 style="margin-bottom:10px;color:#2c662d;">Location</h3>
-      <p style="margin:0;line-height:1.6;">
-        [Village Name],<br>
-        [District], [State],<br>
-        [Country]
-      </p>
-    </div>
-  </div>
+        /* Section transition */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.8s ease-in-out;
+        }
 
-  <!-- Footer Bottom -->
-  <div style="text-align:center;margin-top:20px;font-size:13px;color:#555;">
-    ✨ Created by <strong>[Your Name]</strong> ✨
-  </div>
-</footer>
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Gallery image hover effect */
+        .gallery-item img {
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-orange-500 font-playfair">Bhubaneswar</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="nav-link text-gray-600 hover:text-orange-500 transition duration-300 active">Home</a>
+                <a href="#about" class="nav-link text-gray-600 hover:text-orange-500 transition duration-300">About</a>
+                <a href="#temples" class="nav-link text-gray-600 hover:text-orange-500 transition duration-300">Temples</a>
+                <a href="#places" class="nav-link text-gray-600 hover:text-orange-500 transition duration-300">Places</a>
+                <a href="#food" class="nav-link text-gray-600 hover:text-orange-500 transition duration-300">Food</a>
+                <a href="#culture" class="nav-link text-gray-600 hover:text-orange-500 transition duration-300">Culture</a>
+                <a href="#gallery" class="nav-link text-gray-600 hover:text-orange-500 transition duration-300">Gallery</a>
+            </div>
+             <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 space-y-2">
+             <a href="#home" class="nav-link block text-gray-600 hover:text-orange-500 transition duration-300">Home</a>
+             <a href="#about" class="nav-link block text-gray-600 hover:text-orange-500 transition duration-300">About</a>
+             <a href="#temples" class="nav-link block text-gray-600 hover:text-orange-500 transition duration-300">Temples</a>
+             <a href="#places" class="nav-link block text-gray-600 hover:text-orange-500 transition duration-300">Places</a>
+             <a href="#food" class="nav-link block text-gray-600 hover:text-orange-500 transition duration-300">Food</a>
+             <a href="#culture" class="nav-link block text-gray-600 hover:text-orange-500 transition duration-300">Culture</a>
+             <a href="#gallery" class="nav-link block text-gray-600 hover:text-orange-500 transition duration-300">Gallery</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Homepage Section -->
+        <section id="home" class="content-section active">
+            <div class="hero-banner text-white h-[85vh] flex items-center justify-center">
+                <div class="text-center p-6 bg-black bg-opacity-40 rounded-lg">
+                    <h1 class="text-4xl md:text-6xl font-bold font-playfair mb-4">Welcome to Bhubaneswar</h1>
+                    <h2 class="text-2xl md:text-4xl font-semibold mb-6">The Temple City of India</h2>
+                    <p class="max-w-3xl mx-auto text-lg md:text-xl mb-8">
+                        Bhubaneswar, the capital of Odisha, is a city where ancient heritage meets modern growth. Known for its temples, culture, and traditions, it’s a vibrant destination for travelers and history lovers.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="#about" class="quick-nav-btn bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 rounded-full transition duration-300">About</a>
+                        <a href="#temples" class="quick-nav-btn bg-white hover:bg-gray-200 text-orange-500 font-semibold py-2 px-6 rounded-full transition duration-300">Temples</a>
+                        <a href="#places" class="quick-nav-btn bg-white hover:bg-gray-200 text-orange-500 font-semibold py-2 px-6 rounded-full transition duration-300">Tourist Places</a>
+                        <a href="#food" class="quick-nav-btn bg-white hover:bg-gray-200 text-orange-500 font-semibold py-2 px-6 rounded-full transition duration-300">Food</a>
+                        <a href="#gallery" class="quick-nav-btn bg-white hover:bg-gray-200 text-orange-500 font-semibold py-2 px-6 rounded-full transition duration-300">Gallery</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="content-section container mx-auto px-6 py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold font-playfair text-orange-500">About Bhubaneswar</h2>
+                <p class="text-lg text-gray-600 mt-2">A City of Heritage and Modernity</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <img src="https://images.unsplash.com/photo-1627889679922-36932a4a7a8d?q=80&w=1964&auto=format&fit=crop" alt="Ancient Temple Architecture" class="rounded-lg shadow-xl w-full h-full object-cover">
+                <div class="text-gray-700 space-y-4">
+                    <p class="text-lg leading-relaxed">
+                        Bhubaneswar's history dates back over 2,000 years, with its origins in the ancient kingdom of Kalinga. The city rose to prominence as a center of religious and cultural activity, earning the title "Temple City of India" for once being home to over 700 temples.
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        The city's architecture is a testament to the Kalinga style, characterized by towering spires (deuls) and ornate carvings. Today, Bhubaneswar is a fascinating blend of its rich past and a dynamic present, serving as a major center for IT, education, and commerce in Eastern India. It's a city where ancient stone temples stand in harmony with modern high-rises, offering a unique experience to every visitor.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Temples Section -->
+        <section id="temples" class="content-section bg-orange-50 py-16">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold font-playfair text-orange-500">Sacred Temples</h2>
+                    <p class="text-lg text-gray-600 mt-2">Architectural Marvels of Kalinga</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Lingaraj Temple -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1590218512529-f3dde16f1b13?q=80&w=2070&auto=format&fit=crop" alt="Lingaraj Temple" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Lingaraj Temple</h3>
+                            <p class="text-gray-600">A masterpiece of Kalinga architecture, dedicated to Lord Shiva. Its 55-meter high spire dominates the city's skyline.</p>
+                        </div>
+                    </div>
+                    <!-- Raja Rani Temple -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1658485239928-877174965251?q=80&w=1932&auto=format&fit=crop" alt="Raja Rani Temple" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Raja Rani Temple</h3>
+                            <p class="text-gray-600">Known for its intricate carvings and erotic sculptures, this temple is often called the "Love Temple" of Odisha.</p>
+                        </div>
+                    </div>
+                    <!-- Mukteswar Temple -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1627889679930-b30a57a58a74?q=80&w=2070&auto=format&fit=crop" alt="Mukteswar Temple" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Mukteswar Temple</h3>
+                            <p class="text-gray-600">Famous for its ornate stone arch (torana) and exquisite artwork, considered a gem of Odishan architecture.</p>
+                        </div>
+                    </div>
+                    <!-- Kedar Gauri Temple -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://placehold.co/600x400/fb923c/ffffff?text=Kedar+Gauri+Temple" alt="Kedar Gauri Temple" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Kedar Gauri Temple</h3>
+                            <p class="text-gray-600">Revered for its twin shrines and associated legends, this temple is a significant pilgrimage site.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tourist Places Section -->
+        <section id="places" class="content-section container mx-auto px-6 py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold font-playfair text-orange-500">Must-Visit Attractions</h2>
+                <p class="text-lg text-gray-600 mt-2">Explore the Rich History and Nature</p>
+            </div>
+            <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+                 <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                    <img src="https://images.unsplash.com/photo-1601639343389-140b9ef816a4?q=80&w=2070&auto=format&fit=crop" alt="Dhauli Shanti Stupa" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Dhauli Giri Shanti Stupa</h3>
+                        <p class="text-gray-600">The site of the Kalinga War, where Emperor Ashoka renounced violence. The peace pagoda offers panoramic views.</p>
+                    </div>
+                </div>
+                 <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                    <img src="https://images.unsplash.com/photo-1616604473333-d922a7f53a47?q=80&w=2070&auto=format&fit=crop" alt="Udaygiri and Khandagiri Caves" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Udaygiri & Khandagiri Caves</h3>
+                        <p class="text-gray-600">Ancient rock-cut caves with ornate carvings, which served as residences for Jain monks.</p>
+                    </div>
+                </div>
+                 <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                    <img src="https://images.unsplash.com/photo-1631557822765-b1e77983e2a7?q=80&w=2070&auto=format&fit=crop" alt="Nandankanan Zoological Park" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Nandankanan Zoological Park</h3>
+                        <p class="text-gray-600">Famous for its white tigers and diverse wildlife. It includes a botanical garden and a serene lake.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Famous Food Section -->
+        <section id="food" class="content-section bg-orange-50 py-16">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold font-playfair text-orange-500">Taste of Odisha</h2>
+                    <p class="text-lg text-gray-600 mt-2">A Culinary Journey</p>
+                </div>
+                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden text-center p-6">
+                        <img src="https://placehold.co/400x300/fb923c/ffffff?text=Dalma" alt="Dalma" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-orange-200 object-cover">
+                        <h3 class="text-xl font-bold mb-2">Dalma</h3>
+                        <p class="text-gray-600">A nutritious and flavorful dish made from lentils and vegetables, tempered with spices.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden text-center p-6">
+                        <img src="https://placehold.co/400x300/fb923c/ffffff?text=Pakhala+Bhata" alt="Pakhala Bhata" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-orange-200 object-cover">
+                        <h3 class="text-xl font-bold mb-2">Pakhala Bhata</h3>
+                        <p class="text-gray-600">A cooling and refreshing fermented rice dish, perfect for hot climates, served with side dishes.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden text-center p-6">
+                        <img src="https://placehold.co/400x300/fb923c/ffffff?text=Pitha" alt="Pitha" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-orange-200 object-cover">
+                        <h3 class="text-xl font-bold mb-2">Pitha</h3>
+                        <p class="text-gray-600">Delicious rice-based cakes, available in many varieties like sweet, savory, steamed, or fried.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden text-center p-6">
+                        <img src="https://placehold.co/400x300/fb923c/ffffff?text=Dahi+Bara+Aloo+Dum" alt="Dahi Bara Aloo Dum" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-orange-200 object-cover">
+                        <h3 class="text-xl font-bold mb-2">Dahi Bara Aloo Dum</h3>
+                        <p class="text-gray-600">A beloved street food combining yogurt-soaked fritters with a spicy potato curry.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Culture Section -->
+        <section id="culture" class="content-section container mx-auto px-6 py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold font-playfair text-orange-500">Vibrant Culture</h2>
+                <p class="text-lg text-gray-600 mt-2">A Tapestry of Traditions</p>
+            </div>
+             <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-gray-700 space-y-4">
+                    <h3 class="text-2xl font-bold">A Blend of Ancient and Modern</h3>
+                    <p class="text-lg leading-relaxed">
+                        Bhubaneswar's culture is a rich blend of ancient traditions and a modern lifestyle. Its religious and spiritual heritage is profound, being the "Temple City" with a history of over 700 temples. This sacred identity is woven into the daily lives of its people.
+                    </p>
+                     <h3 class="text-2xl font-bold mt-6">Religious Tolerance</h3>
+                    <p class="text-lg leading-relaxed">
+                        The city is a beacon of religious harmony where Hinduism, Buddhism, Islam, and Christianity have coexisted for centuries. This tolerance is reflected in its diverse festivals, art forms, and social fabric, creating a welcoming atmosphere for all.
+                    </p>
+                </div>
+                <img src="https://images.unsplash.com/photo-1594665499256-32b55f309a47?q=80&w=1935&auto=format&fit=crop" alt="Cultural Dance Performance" class="rounded-lg shadow-xl w-full h-full object-cover">
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="content-section bg-gray-100 py-16">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold font-playfair text-orange-500">City Gallery</h2>
+                    <p class="text-lg text-gray-600 mt-2">Moments from Bhubaneswar</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div class="gallery-item overflow-hidden rounded-lg shadow-md"><img src="https://images.unsplash.com/photo-1590218512529-f3dde16f1b13?q=80&w=2070&auto=format&fit=crop" alt="Gallery Image 1" class="w-full h-full object-cover"></div>
+                    <div class="gallery-item overflow-hidden rounded-lg shadow-md"><img src="https://images.unsplash.com/photo-1627889679930-b30a57a58a74?q=80&w=2070&auto=format&fit=crop" alt="Gallery Image 2" class="w-full h-full object-cover"></div>
+                    <div class="gallery-item overflow-hidden rounded-lg shadow-md"><img src="https://images.unsplash.com/photo-1616604473333-d922a7f53a47?q=80&w=2070&auto=format&fit=crop" alt="Gallery Image 3" class="w-full h-full object-cover"></div>
+                    <div class="gallery-item overflow-hidden rounded-lg shadow-md"><img src="https://images.unsplash.com/photo-1601639343389-140b9ef816a4?q=80&w=2070&auto=format&fit=crop" alt="Gallery Image 4" class="w-full h-full object-cover"></div>
+                    <div class="gallery-item overflow-hidden rounded-lg shadow-md"><img src="https://images.unsplash.com/photo-1658485239928-877174965251?q=80&w=1932&auto=format&fit=crop" alt="Gallery Image 5" class="w-full h-full object-cover"></div>
+                    <div class="gallery-item overflow-hidden rounded-lg shadow-md"><img src="https://placehold.co/600x400/fb923c/ffffff?text=Festival" alt="Gallery Image 6" class="w-full h-full object-cover"></div>
+                    <div class="gallery-item overflow-hidden rounded-lg shadow-md"><img src="https://placehold.co/600x400/fb923c/ffffff?text=Modern+Cityscape" alt="Gallery Image 7" class="w-full h-full object-cover"></div>
+                    <div class="gallery-item overflow-hidden rounded-lg shadow-md"><img src="https://placehold.co/600x400/fb923c/ffffff?text=Local+Cuisine" alt="Gallery Image 8" class="w-full h-full object-cover"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-4">
+                <a href="#" class="px-3 hover:text-orange-400 transition">Home</a>
+                <a href="#" class="px-3 hover:text-orange-400 transition">About</a>
+                <a href="#" class="px-3 hover:text-orange-400 transition">Contact</a>
+                <a href="#" class="px-3 hover:text-orange-400 transition">Privacy Policy</a>
+            </div>
+            <div class="flex justify-center space-x-6 mb-4">
+                <!-- Social Icons -->
+                <a href="#" class="hover:text-orange-400 transition">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="#" class="hover:text-orange-400 transition">
+                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
+                </a>
+                 <a href="#" class="hover:text-orange-400 transition">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.315 2zm-1.161 2.25a.75.75 0 01.75.75v11.19a.75.75 0 01-1.5 0V5a.75.75 0 01.75-.75zm2.083.75a.75.75 0 00-.75.75v11.19a.75.75 0 001.5 0V5a.75.75 0 00-.75-.75z" clip-rule="evenodd" /></svg>
+                </a>
+            </div>
+            <p class="text-gray-400">&copy; 2025 Bhubaneswar Tourism | Designed with ❤️</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const quickNavBtns = document.querySelectorAll('.quick-nav-btn');
+            const sections = document.querySelectorAll('.content-section');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // Function to handle navigation
+            const navigateTo = (hash) => {
+                // Hide all sections
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                // Show the target section
+                const targetSection = document.querySelector(hash);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+
+                // Update active state on nav links
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === hash) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+
+                // Close mobile menu after navigation
+                mobileMenu.classList.add('hidden');
+                 window.scrollTo(0, 0);
+            };
+            
+            // Handle clicks on all navigation links
+            const allNavLinks = [...navLinks, ...quickNavBtns];
+
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetHash = this.getAttribute('href');
+                    navigateTo(targetHash);
+                });
+            });
+
+            // Toggle mobile menu
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Set initial state based on hash or default to #home
+            const initialHash = window.location.hash || '#home';
+            navigateTo(initialHash);
+        });
+    </script>
+</body>
+</html>
